@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_17_135953) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_17_141731) do
   create_table "pokemons", force: :cascade do |t|
     t.string "name"
     t.string "image_path", limit: 200
@@ -21,6 +21,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_135953) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_pokemons_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "pokemon_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "action", default: 0
+    t.index ["pokemon_id"], name: "index_transactions_on_pokemon_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
